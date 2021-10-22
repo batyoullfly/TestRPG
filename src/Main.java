@@ -1,3 +1,8 @@
 public class Main {
-    Map m = new Map();
+
+    public static void main(String[] args) {
+        Map m = new Map();
+        m.printMap();
+    }
+
 }
