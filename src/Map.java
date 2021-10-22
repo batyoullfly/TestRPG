@@ -9,6 +9,7 @@ public class Map {
     int[] mapDimensions = new int[2];
     int mapXDimension;
     int mapYDimension;
+    Player player;
     public Map() {
         mapArray = generateMap("src/map.txt");
 
@@ -16,6 +17,7 @@ public class Map {
         mapDimensions[1] = mapArray.length;
         startLocation[0] = 0;
         startLocation[1] = 1;
+        player = new Player(startLocation);
     }
     public Map(String filename, int mapXDimension, int mapYDimension, int[] startLocation) {
 
@@ -40,14 +42,17 @@ public class Map {
             return mapArray;
         } catch (FileNotFoundException e) {
             System.out.println("filenotfound");
-            return new String[0][0];
+            return null;
         }
     }
     public void printMap() {
-        for (String[] row : mapArray) {
-            for (String s : row) {
-                if (!s.equals("☐")) {
-                    System.out.print(s + "\t");
+        for (int i = 0; i < mapArray.length; i++) {
+            for (int j = 0; j < mapArray[0].length; j++) {
+                if (i == player.getXLocation() && j == player.getYLocation()) {
+                    System.out.print("☺" + "\t");
+
+                } else if (!mapArray[i][j].equals("☐")) {
+                    System.out.print(mapArray[i][j] + "\t");
                 } else {
                     System.out.print("\t");
                 }
